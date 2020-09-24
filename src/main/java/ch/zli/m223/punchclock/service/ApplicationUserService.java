@@ -1,6 +1,7 @@
 package ch.zli.m223.punchclock.service;
 
 import ch.zli.m223.punchclock.domain.ApplicationUser;
+import ch.zli.m223.punchclock.domain.Entry;
 import ch.zli.m223.punchclock.repository.ApplicationUserRepository;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -26,4 +27,8 @@ public class ApplicationUserService implements UserDetailsService {
         }
         return new User(applicationUser.getUsername(), applicationUser.getPassword(), emptyList());
     }
+
+    public void editUser(ApplicationUser user) { applicationUserRepository.saveAndFlush(user); }
+
+    public void deleteUser(long id) { applicationUserRepository.deleteById(id);}
 }

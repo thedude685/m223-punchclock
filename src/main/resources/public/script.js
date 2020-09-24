@@ -1,6 +1,7 @@
 const URL = 'http://localhost:8081';
 let entries = [];
 
+
 const dateAndTimeToDate = (dateString, timeString) => {
     return new Date(`${dateString}T${timeString}`).toISOString();
 };
@@ -52,6 +53,18 @@ const renderEntries = () => {
         row.appendChild(createCell(entry.id));
         row.appendChild(createCell(new Date(entry.checkIn).toLocaleString()));
         row.appendChild(createCell(new Date(entry.checkOut).toLocaleString()));
+        var btn = document.createElement("button");
+        btn.innerHTML = "Delete entry";
+        btn.onclick = function () {
+            fetch(`${URL}/entries/${entry.id}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
+                }}
+            );
+            renderEntries();
+        }
+        row.appendChild(btn);
         display.appendChild(row);
     });
 };
