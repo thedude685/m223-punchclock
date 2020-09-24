@@ -12,6 +12,10 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
+/**
+ * Author: Joel Angehrn
+ * Version: 1.0
+ */
 @RestController
 @RequestMapping("/users")
 public class UserController {
@@ -28,26 +32,43 @@ public class UserController {
         this.applicationUserService = applicationUserService;
     }
 
+    /**
+     * Create single Account
+     * @param user
+     */
     @PostMapping("/sign-up")
     public void signUp(@RequestBody ApplicationUser user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         applicationUserRepository.save(user);
     }
 
+    /**
+     *
+     * @return
+     */
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<ApplicationUser> getAllEntries() {
+    public List<ApplicationUser> getAllUsers() {
         return applicationUserRepository.findAll();
     }
 
+    /**
+     * Delete single User
+     * @param id
+     * @param user
+     */
     @DeleteMapping("/delete/{id}")
     public void deleteUser(@PathVariable Long id, ApplicationUser user) {
         applicationUserService.deleteUser(id);
     }
 
+    /**
+     * Edit single User
+     * @param user
+     */
     @PutMapping("/edit")
     @ResponseStatus(HttpStatus.OK)
-    public void editEntry(@Valid @RequestBody Entry entry, ApplicationUser user) {
+    public void editUser(@Valid @RequestBody ApplicationUser user) {
         applicationUserService.editUser(user);
     }
 }

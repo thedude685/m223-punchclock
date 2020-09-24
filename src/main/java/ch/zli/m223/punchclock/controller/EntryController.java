@@ -22,23 +22,42 @@ public class EntryController {
         this.entryService = entryService;
     }
 
+    /**
+     * Method to return all entries
+     * @return
+     */
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<Entry> getAllEntries() {
         return entryService.findAll();
     }
 
+    /**
+     * Creates single Entry
+     * @param entry
+     * @return
+     */
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Entry createEntry(@Valid @RequestBody Entry entry) {
         return entryService.createEntry(entry);
     }
 
+    /**
+     * Deletes single User
+     * @param id
+     * @param user
+     */
     @DeleteMapping("/delete/{id}")
-    public void deleteUser(@PathVariable Long id, ApplicationUser user) {
+    public void deleteEntry(@PathVariable Long id, ApplicationUser user) {
         entryService.deleteEntry(id, user);
     }
 
+    /**
+     * Edit single Entry
+     * @param entry
+     * @param user
+     */
     @PutMapping("/edit")
     @ResponseStatus(HttpStatus.OK)
     public void editEntry(@Valid @RequestBody Entry entry, ApplicationUser user) {

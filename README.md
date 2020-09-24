@@ -1,13 +1,9 @@
 # M223: Punchclock
-Dies ist eine Beispielapplikation für das Modul M223.
+Kann User erstellen und sich anmleden. Kann Entries und User erstellen, editieren und löschen. 
 
 ## Loslegen
-Folgende Schritte befolgen um loszulegen:
-1. Sicherstellen, dass JDK 12 installiert und in der Umgebungsvariable `path` definiert ist.
-1. Ins Verzeichnis der Applikation wechseln und über die Kommandozeile mit `./gradlew bootRun` oder `./gradlew.bat bootRun` starten
-1. Unittest mit `./gradlew test` oder `./gradlew.bat test` ausführen.
-1. Ein ausführbares JAR kann mit `./gradlew bootJar` oder `./gradlew.bat bootJar` erstellt werden.
-
-Folgende Dienste stehen während der Ausführung im Profil `dev` zur Verfügung:
-- REST-Schnittstelle der Applikation: http://localhost:8081
-- Dashboard der H2 Datenbank: http://localhost:8081/h2-console
+Um einen User zu erstellen geht man auf http://localhost:8081/sign-up.html und erstellt dort einen neuen Account
+Dann kann man sich im auf Postman http://localhost:8081/login anmelden mit einer Post Request. Mit einer Get Request auf
+http://localhost:8081/users kann man sich alle User anzeigen lassen. 
+Man kann entries auf http://localhost:8081/index.html erstellen und löschen und im backend auf 
+http://localhost:8081/entries/edit editieren
